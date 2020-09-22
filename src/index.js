@@ -1,0 +1,64 @@
+document.addEventListener("DOMContentLoaded", () => {
+
+    const QUOTES_URL = "http://localhost:3000/quotes?_embed=likes"
+
+    const getQuotes = () => {
+        fetch(QUOTES_URL)
+        .then(response => response.json())
+        .then(quotes => renderQuotes(quotes))
+    }
+
+    const renderQuotes = quotes => {
+        quotes.map(renderQuote)
+    }
+
+    const renderQuote = quote => {
+        const quoteUl = document.querySelector("#quote-list")
+        const quoteLi = document.createElement("li")
+        quoteLi.classList.add("quote-card")
+
+        const quoteBlock = document.createElement("blockquote")
+        quoteBlock.innerHTML = `
+        <p class="mb-0">${quote.quote}</p>
+        <footer class="blockquote-footer">${quote.author}</footer>
+        <br>
+        <button class='btn-success'>Likes: <span>${quote.likes.length}</span></button>
+        <button class='btn-danger'>Delete</button>
+        `
+
+        quoteLi.append(quoteBlock)
+        quoteUl.append(quoteLi)
+    }
+
+    const submitHandler = () => {
+        document.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const form = e.target
+
+            const quoteObj = {
+                quote: form.querySelector("#new-quote").value,
+                author: form.querySelector("#author").value
+            }
+
+            const fetchOptions = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify(quoteObj)
+            }
+
+            fetch(QUOTES_URL, fetchOptions)
+            .then(response => response.json())
+            .then(quote => {
+                getQuotes()
+                form.reset()
+            })
+        })
+    }
+
+    submitHandler();
+    getQuotes();
+
+})
