@@ -11,11 +11,29 @@ document.addEventListener("DOMContentLoaded", () =>{
     }
 
     const getQuotesAndRenderToDomSortedByAuthor = () => {
-        fetch("http://localhost:3000/quotes?_sort=author")
+        fetch("http://localhost:3000/quotes?_embed=likes")
         .then(response => response.json())
         .then(quotes => {
-            renderSorteds(quotes)
+            renderSortedQuotes(quotes)
         })
+    }
+
+    const compare = (a, b) => {
+        if (a.author < b.author){
+            return -1
+        }
+        if( a.author > b.author){
+            return 1;
+        }
+        return 0
+    }
+
+    const renderSortedQuotes = quotes => {
+        quotes = quotes.sort(compare)
+        const quoteUl = document.querySelector("#quote-list")
+        for(const quote of quotes){
+            renderQuote(quote, quoteUl)
+        }
     }
 
     const renderQuotes = quotes => {
@@ -24,32 +42,6 @@ document.addEventListener("DOMContentLoaded", () =>{
             renderQuote(quote, quoteUl)
         }
     }
-    const renderSorteds = quotes => {
-        const quoteUl = document.querySelector("#quote-list")
-        for(const quote of quotes){
-            renderSorted(quote, quoteUl)
-        }
-    }
-  
-    const renderSorted = (quote, quoteUl) => {
-        const quoteLi = document.createElement('li')
-        quoteLi.classList.add('quote-card')
-        quoteLi.dataset.quoteId = quote.id
-        quoteLi.innerHTML = `
-            <blockquote class="blockquote">
-                <p class="mb-0">${quote.quote}</p>
-                <footer class="blockquote-footer">${quote.author}</footer>
-                <br>
-                <button class='like-button btn-success'>Likes: 
-                </button>
-                <button class='delete-button btn-danger'>Delete</button>
-                <button class='edit-button btn-warning'>Edit</button>
-
-            </blockquote>
-        `
-        quoteUl.append(quoteLi)
-    }
-
 
     const renderQuote = (quote, quoteUl) => {
         const quoteLi = document.createElement('li')
@@ -80,23 +72,30 @@ document.addEventListener("DOMContentLoaded", () =>{
             } else if(e.target.matches('.edit-button')){
                 showEditFormOnClickOfEditButton(e.target)
             } else if(e.target.matches('#unsorted')){
-                const sortButton = e.target
-                sortButton.id = "sorted"
-                sortButton.innerText = "Unsort"
-                const quotesUl= document.querySelector('#quote-list')
-                quotesUl.innerHTML = ''
-                getQuotesAndRenderToDomSortedByAuthor()
+                sortByAuthor(e.target)
             } else if(e.target.matches('#sorted')){
-                const sortButton = e.target
-                sortButton.id = "unsorted"
-                sortButton.innerText = "Sort By Author"
-                const quotesUl= document.querySelector('#quote-list')
-                quotesUl.innerHTML = ''
-                getQuotesAndRenderToDom()
+                sortById(e.target)
             }
         })
     }
 
+    const sortById = el => {
+        const sortButton = el
+        sortButton.id = "unsorted"
+        sortButton.innerText = "Sort By Author"
+        const quotesUl= document.querySelector('#quote-list')
+        quotesUl.innerHTML = ''
+        getQuotesAndRenderToDom()
+    }
+
+    const sortByAuthor = el => {
+        const sortButton = el
+        sortButton.id = "sorted"
+        sortButton.innerText = "Sort By Default"
+        const quotesUl= document.querySelector('#quote-list')
+        quotesUl.innerHTML = ''
+        getQuotesAndRenderToDomSortedByAuthor()
+    }
     const showEditFormOnClickOfEditButton = el => {
         const editForm = document.querySelector('#edit-form')
         editForm.style.display = 'inline'
@@ -135,6 +134,7 @@ document.addEventListener("DOMContentLoaded", () =>{
         .then(response => response.json())
         .then(like => {
             const quoteUl = document.querySelector("#quote-list")
+            console.log(like)
             quoteUl.innerHTML = ''
             getQuotesAndRenderToDom()
         })
@@ -231,4 +231,5 @@ document.addEventListener("DOMContentLoaded", () =>{
     submitHandler()
     clickHandler()
     getQuotesAndRenderToDom()
+    // getQuotesAndRenderToDomSortedByAuthor()
 })
