@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", () =>{
-    
+    const quotesUrl = 'http://localhost:3000/quotes/'
+    const likes = []
+
+
     const getQuotesAndRenderToDom = () => {
         fetch("http://localhost:3000/quotes?_embed=likes")
         .then(response => response.json())
@@ -25,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () =>{
                 <footer class="blockquote-footer">${quote.author}</footer>
                 <br>
                 <button class='like-button btn-success'>Likes: 
-                    <span>0</span>
+                    <span>${quote.likes.length}</span>
                 </button>
                 <button class='delete-button btn-danger'>Delete</button>
             </blockquote>
@@ -35,7 +38,35 @@ document.addEventListener("DOMContentLoaded", () =>{
 
     const clickListener = () => {
         document.addEventListener('click', e => {
+            if(e.target.matches('.delete-button')){
+                deleteQuote(e.target)
+            } else if(e.target.matches('.like-button')){
+                const quoteLi = e.target.closest('li')
+                const quoteId = quoteLi.dataset.quoteId
 
+                const likeObj = {
+                    quoteId: parseInt(quoteId),
+                    createdAt: Date.now()
+                }
+
+                const options = {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accepts": "application/json"
+                    },
+                    body: JSON.stringify(likeObj)
+                }
+                
+                fetch('http://localhost:3000/likes/', options)
+                .then(response => response.json())
+                .then(like => {
+                    const quoteUl = document.querySelector("#quote-list")
+                    quoteUl.innerHTML = ''
+                    getQuotesAndRenderToDom()
+        
+                })
+            }
         })
     }
 
@@ -44,10 +75,20 @@ document.addEventListener("DOMContentLoaded", () =>{
             if(e.target.matches('#new-quote-form')){
                 e.preventDefault()
                 createNewQuote(e.target)
-                //want to sent back data in a post request
-
             }
         })
+    }
+
+    const deleteQuote = el => {
+        const quoteLi = el.closest('li')
+        const quoteId = quoteLi.dataset.quoteId
+
+        const options = {
+            method: "DELETE"
+        }
+
+        fetch(quotesUrl + quoteId, options)
+            quoteLi.remove()
     }
 
     const createNewQuote = el => {
@@ -60,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () =>{
             author: newAuthor
         }
 
-        fetch('http://localhost:3000/quotes', postRequestOptionsForQuote(quoteObj))
+        fetch(quotesUrl, postRequestOptionsForQuote(quoteObj))
         .then(response => response.json())
         .then(quote => {
             const quoteUl = document.querySelector("#quote-list")

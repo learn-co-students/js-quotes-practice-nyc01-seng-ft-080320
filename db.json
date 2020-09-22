@@ -80,5 +80,37 @@
       "author": "asdf",
       "id": 16
     }
+  ],
+  "likes": [
+    {
+      "quoteId": 1,
+      "createdAt": "Tue Sep 22 2020 15:38:05 GMT-0400 (Eastern Daylight Time)",
+      "id": 1
+    },
+    {
+      "quoteId": 1,
+      "createdAt": 1600807378686,
+      "id": 2
+    },
+    {
+      "quoteId": 1,
+      "createdAt": 1600807379460,
+      "id": 3
+    },
+    {
+      "quoteId": 1,
+      "createdAt": 1600807379967,
+      "id": 4
+    },
+    {
+      "quoteId": 2,
+      "createdAt": 1600807380769,
+      "id": 5
+    },
+    {
+      "quoteId": 2,
+      "createdAt": 1600807381402,
+      "id": 6
+    }
   ]
 }
