@@ -1,14 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const QUOTES_URL = "http://localhost:3000/quotes?_embed=likes"
+    const GET_QUOTES_URL = "http://localhost:3000/quotes?_embed=likes"
+    const QUOTES = "http://localhost:3000/quotes"
 
     const getQuotes = () => {
-        fetch(QUOTES_URL)
+        fetch(GET_QUOTES_URL)
         .then(response => response.json())
         .then(quotes => renderQuotes(quotes))
     }
 
     const renderQuotes = quotes => {
+        const quoteUl = document.querySelector("#quote-list")
+        quoteUl.innerHTML = ""
         quotes.map(renderQuote)
     }
 
@@ -16,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const quoteUl = document.querySelector("#quote-list")
         const quoteLi = document.createElement("li")
         quoteLi.classList.add("quote-card")
+        quoteLi.dataset.quote_id = quote.id
 
         const quoteBlock = document.createElement("blockquote")
         quoteBlock.innerHTML = `
@@ -49,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 body: JSON.stringify(quoteObj)
             }
 
-            fetch(QUOTES_URL, fetchOptions)
+            fetch(GET_QUOTES_URL, fetchOptions)
             .then(response => response.json())
             .then(quote => {
                 getQuotes()
@@ -58,6 +62,29 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     }
 
+    const clickHandler = () => {
+        document.addEventListener("click", (e) => {
+            if (e.target.matches(".btn-success")) {
+
+            } else if (e.target.matches(".btn-danger")) {
+                const quoteId = e.target.closest("li").dataset.quote_id
+                deleteQuote(quoteId)
+            }
+        })
+    }
+
+    const deleteQuote = quoteId => {
+        const delUrl = QUOTES+"/"+quoteId
+        const fetchOptions = {
+            method: "DELETE"
+        }
+
+        fetch(delUrl, fetchOptions)
+        .then(response => response.json())
+        .then(getQuotes())
+    }
+
+    clickHandler();
     submitHandler();
     getQuotes();
 
