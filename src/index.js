@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () =>{
     const quotesUrl = 'http://localhost:3000/quotes/'
-    const likes = []
 
 
     const getQuotesAndRenderToDom = () => {
@@ -31,54 +30,112 @@ document.addEventListener("DOMContentLoaded", () =>{
                     <span>${quote.likes.length}</span>
                 </button>
                 <button class='delete-button btn-danger'>Delete</button>
+                <button class='edit-button btn-warning'>Edit</button>
+
             </blockquote>
         `
         quoteUl.append(quoteLi)
     }
 
-    const clickListener = () => {
+    const clickHandler = () => {
         document.addEventListener('click', e => {
             if(e.target.matches('.delete-button')){
                 deleteQuote(e.target)
             } else if(e.target.matches('.like-button')){
+                addLike(e.target)
+            } else if(e.target.matches('.edit-button')){
+                const editForm = document.querySelector('#edit-form')
+                editForm.style.display = 'inline'
                 const quoteLi = e.target.closest('li')
                 const quoteId = quoteLi.dataset.quoteId
+                editForm.dataset.currentQuoteId = quoteId
+                const quote = quoteLi.querySelector('p').innerText
+                const author = quoteLi.querySelector('footer').innerText
 
-                const likeObj = {
-                    quoteId: parseInt(quoteId),
-                    createdAt: Date.now()
-                }
+                const quoteField = editForm.quote
+                const authorField = editForm.author
 
-                const options = {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Accepts": "application/json"
-                    },
-                    body: JSON.stringify(likeObj)
-                }
+                quoteField.value = quote
+                authorField.value = author
+
                 
-                fetch('http://localhost:3000/likes/', options)
-                .then(response => response.json())
-                .then(like => {
-                    const quoteUl = document.querySelector("#quote-list")
-                    quoteUl.innerHTML = ''
-                    getQuotesAndRenderToDom()
-        
-                })
+                //display form and populate info in it
             }
         })
     }
 
-    const submitListener = () => {
+ 
+    const addLike = el => {
+        const quoteLi = el.closest('li')
+        const quoteId = quoteLi.dataset.quoteId
+
+        const likeObj = {
+            quoteId: parseInt(quoteId),
+            createdAt: Date.now()
+        }
+
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accepts": "application/json"
+            },
+            body: JSON.stringify(likeObj)
+        }
+        
+        fetch('http://localhost:3000/likes/', options)
+        .then(response => response.json())
+        .then(like => {
+            const quoteUl = document.querySelector("#quote-list")
+            quoteUl.innerHTML = ''
+            getQuotesAndRenderToDom()
+        })
+    }
+
+    const submitHandler = () => {
         document.addEventListener('submit', e => {
             if(e.target.matches('#new-quote-form')){
                 e.preventDefault()
                 createNewQuote(e.target)
+            } else if(e.target.matches('#edit-form')){
+                e.preventDefault()
+                editQuote(e.target)
             }
         })
     }
 
+    const editQuote = el => {
+        const editForm = el
+        const editQuote = editForm.quote.value
+        const editAuthor = editForm.author.value
+        const quoteId = editForm.dataset.currentQuoteId
+
+        const quoteObj = {
+            quote: editQuote,
+            author: editAuthor
+        }
+
+        const options = {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "Accepts": "application/json"
+            },
+            body: JSON.stringify(quoteObj)
+        }
+
+        fetch(quotesUrl + quoteId, options)
+        .then(response => response.json())
+        .then(quote => {
+            const quoteUl = document.querySelector('#quote-list')
+            quoteUl.innerHTML = ''
+            getQuotesAndRenderToDom()
+            editForm.removeAttribute('data-current-quote-id')
+            editForm.style.display = "none"
+
+        })
+        editForm.reset()
+    }
     const deleteQuote = el => {
         const quoteLi = el.closest('li')
         const quoteId = quoteLi.dataset.quoteId
@@ -110,6 +167,7 @@ document.addEventListener("DOMContentLoaded", () =>{
             form.reset()
         })
     }
+
     const postRequestOptionsForQuote = quoteObj => {
         const options = {
             method: "POST",
@@ -122,9 +180,7 @@ document.addEventListener("DOMContentLoaded", () =>{
         return options
     }
 
-
-
-    submitListener()
-    clickListener()
+    submitHandler()
+    clickHandler()
     getQuotesAndRenderToDom()
 })

@@ -1,21 +1,6 @@
 {
   "quotes": [
     {
-      "id": 1,
-      "quote": "Expect nothing. Live frugally on surprise.",
-      "author": "Alice Walker"
-    },
-    {
-      "id": 2,
-      "quote": "Y’all is the best, most inclusive, second-person, plural pronoun in the English-speaking world.",
-      "author": "Hannah Gadsby"
-    },
-    {
-      "id": 3,
-      "quote": "today a man on the street pointed to me & said ‘what the hell is that!?’ i wanted to turn around, tell him that i got this dress on sale & i got this body for free but you have been making me pay for both ever since.",
-      "author": "Alok Vaid Menon"
-    },
-    {
       "id": 4,
       "quote": "You gain strength, courage and confidence by every experience in which you really stop to look fear in the face. You are able to say to yourself, 'I have lived through this horror. I can take the next thing that comes along.' You must do the thing you think you cannot do.",
       "author": "Eleanor Roosevelt"
@@ -71,46 +56,51 @@
       "id": 14
     },
     {
-      "quote": "asdfasf",
+      "quote": "happy",
       "author": "adsf",
       "id": 15
-    },
-    {
-      "quote": "asdf",
-      "author": "asdf",
-      "id": 16
     }
   ],
   "likes": [
     {
-      "quoteId": 1,
-      "createdAt": "Tue Sep 22 2020 15:38:05 GMT-0400 (Eastern Daylight Time)",
-      "id": 1
+      "quoteId": 4,
+      "createdAt": 1600807435649,
+      "id": 7
     },
     {
-      "quoteId": 1,
-      "createdAt": 1600807378686,
-      "id": 2
+      "quoteId": 4,
+      "createdAt": 1600807437307,
+      "id": 8
     },
     {
-      "quoteId": 1,
-      "createdAt": 1600807379460,
-      "id": 3
+      "quoteId": 4,
+      "createdAt": 1600807579884,
+      "id": 12
     },
     {
-      "quoteId": 1,
-      "createdAt": 1600807379967,
-      "id": 4
+      "quoteId": 4,
+      "createdAt": 1600807580567,
+      "id": 13
     },
     {
-      "quoteId": 2,
-      "createdAt": 1600807380769,
-      "id": 5
+      "quoteId": 5,
+      "createdAt": 1600807581626,
+      "id": 14
     },
     {
-      "quoteId": 2,
-      "createdAt": 1600807381402,
-      "id": 6
+      "quoteId": 5,
+      "createdAt": 1600807582152,
+      "id": 15
+    },
+    {
+      "quoteId": 9,
+      "createdAt": 1600807740529,
+      "id": 16
+    },
+    {
+      "quoteId": 9,
+      "createdAt": 1600807744663,
+      "id": 17
     }
   ]
 }
