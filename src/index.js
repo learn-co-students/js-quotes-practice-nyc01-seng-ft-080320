@@ -10,13 +10,47 @@ document.addEventListener("DOMContentLoaded", () =>{
         })
     }
 
+    const getQuotesAndRenderToDomSortedByAuthor = () => {
+        fetch("http://localhost:3000/quotes?_sort=author")
+        .then(response => response.json())
+        .then(quotes => {
+            renderSorteds(quotes)
+        })
+    }
+
     const renderQuotes = quotes => {
         const quoteUl = document.querySelector("#quote-list")
         for(const quote of quotes){
             renderQuote(quote, quoteUl)
         }
     }
+    const renderSorteds = quotes => {
+        const quoteUl = document.querySelector("#quote-list")
+        for(const quote of quotes){
+            renderSorted(quote, quoteUl)
+        }
+    }
   
+    const renderSorted = (quote, quoteUl) => {
+        const quoteLi = document.createElement('li')
+        quoteLi.classList.add('quote-card')
+        quoteLi.dataset.quoteId = quote.id
+        quoteLi.innerHTML = `
+            <blockquote class="blockquote">
+                <p class="mb-0">${quote.quote}</p>
+                <footer class="blockquote-footer">${quote.author}</footer>
+                <br>
+                <button class='like-button btn-success'>Likes: 
+                </button>
+                <button class='delete-button btn-danger'>Delete</button>
+                <button class='edit-button btn-warning'>Edit</button>
+
+            </blockquote>
+        `
+        quoteUl.append(quoteLi)
+    }
+
+
     const renderQuote = (quote, quoteUl) => {
         const quoteLi = document.createElement('li')
         quoteLi.classList.add('quote-card')
@@ -44,26 +78,40 @@ document.addEventListener("DOMContentLoaded", () =>{
             } else if(e.target.matches('.like-button')){
                 addLike(e.target)
             } else if(e.target.matches('.edit-button')){
-                const editForm = document.querySelector('#edit-form')
-                editForm.style.display = 'inline'
-                const quoteLi = e.target.closest('li')
-                const quoteId = quoteLi.dataset.quoteId
-                editForm.dataset.currentQuoteId = quoteId
-                const quote = quoteLi.querySelector('p').innerText
-                const author = quoteLi.querySelector('footer').innerText
-
-                const quoteField = editForm.quote
-                const authorField = editForm.author
-
-                quoteField.value = quote
-                authorField.value = author
-
-                
-                //display form and populate info in it
+                showEditFormOnClickOfEditButton(e.target)
+            } else if(e.target.matches('#unsorted')){
+                const sortButton = e.target
+                sortButton.id = "sorted"
+                sortButton.innerText = "Unsort"
+                const quotesUl= document.querySelector('#quote-list')
+                quotesUl.innerHTML = ''
+                getQuotesAndRenderToDomSortedByAuthor()
+            } else if(e.target.matches('#sorted')){
+                const sortButton = e.target
+                sortButton.id = "unsorted"
+                sortButton.innerText = "Sort By Author"
+                const quotesUl= document.querySelector('#quote-list')
+                quotesUl.innerHTML = ''
+                getQuotesAndRenderToDom()
             }
         })
     }
 
+    const showEditFormOnClickOfEditButton = el => {
+        const editForm = document.querySelector('#edit-form')
+        editForm.style.display = 'inline'
+        const quoteLi = el.closest('li')
+        const quoteId = quoteLi.dataset.quoteId
+        editForm.dataset.currentQuoteId = quoteId
+        const quote = quoteLi.querySelector('p').innerText
+        const author = quoteLi.querySelector('footer').innerText
+
+        const quoteField = editForm.quote
+        const authorField = editForm.author
+
+        quoteField.value = quote
+        authorField.value = author
+    }
  
     const addLike = el => {
         const quoteLi = el.closest('li')
