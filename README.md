@@ -26,7 +26,7 @@ If you already have it installed, run the server by: `$ json-server --watch db.j
   ```html
     <li class='quote-card'>
       <blockquote class="blockquote">
-        <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+        <p class="mb-0">${}</p>
         <footer class="blockquote-footer">Someone famous</footer>
         <br>
         <button class='btn-success'>Likes: <span>0</span></button>
@@ -55,8 +55,8 @@ If you already have it installed, run the server by: `$ json-server --watch db.j
 
 ## Extend Your Learning
 
-* Add an edit button to each quote-card that will allow the editing of a quote. _(Hint: there is no 'correct' way to do this. You can try creating a hidden form that will only show up when hitting the edit button.)_
-* Currently, the number of likes of each post does not persist on the frontend after we refresh, as we set the beginning value to 0. Include an additional fetch to always have an updated number of likes for each post. You will send a GET request to `http://localhost:3000/likes?quoteId=` and interpolate the id of a given post.
+<!-- * Add an edit button to each quote-card that will allow the editing of a quote. _(Hint: there is no 'correct' way to do this. You can try creating a hidden form that will only show up when hitting the edit button.)_ -->
+<!-- * Currently, the number of likes of each post does not persist on the frontend after we refresh, as we set the beginning value to 0. Include an additional fetch to always have an updated number of likes for each post. You will send a GET request to `http://localhost:3000/likes?quoteId=` and interpolate the id of a given post. -->
 * Add a sort button that can be toggled on or off. When off the list of quotes will appear sorted by the ID. When the sort is active, it will display the quotes by author's name, alphabetically.
   * One way of doing this is to sort the quotes in JS after you've retrieved them from the API. Try this way first.
   * Another way of doing this is to make a fetch to `http://localhost:3000/quotes?_sort=author`

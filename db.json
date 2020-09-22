@@ -51,9 +51,9 @@
       "author": "Sonia Sotomayor"
     },
     {
-      "id": 11,
-      "quote": "The here and now is all we have, and if we play it right it's all we'll need.",
-      "author": "Ann Richards"
+      "quote": "Learn. Love. Code.",
+      "author": "Flatiron School",
+      "id": 11
     }
   ],
   "likes": [
@@ -66,6 +66,94 @@
       "quoteId": 10,
       "id": 2,
       "createdAt": 1558524358
+    },
+    {
+      "quoteId": 10,
+      "id": 21
+    },
+    {
+      "quoteId": 10,
+      "id": 22
+    },
+    {
+      "quoteId": 10,
+      "id": 23
+    },
+    {
+      "quoteId": 10,
+      "id": 24
+    },
+    {
+      "quoteId": 10,
+      "id": 25
+    },
+    {
+      "quoteId": 9,
+      "id": 26
+    },
+    {
+      "quoteId": 9,
+      "id": 27
+    },
+    {
+      "quoteId": 9,
+      "id": 28
+    },
+    {
+      "quoteId": 9,
+      "id": 29
+    },
+    {
+      "quoteId": 1,
+      "id": 30
+    },
+    {
+      "quoteId": 1,
+      "id": 31
+    },
+    {
+      "quoteId": 1,
+      "id": 32
+    },
+    {
+      "quoteId": 1,
+      "id": 33
+    },
+    {
+      "quoteId": 2,
+      "id": 34
+    },
+    {
+      "quoteId": 2,
+      "id": 35
+    },
+    {
+      "quoteId": 2,
+      "id": 36
+    },
+    {
+      "quoteId": 2,
+      "id": 37
+    },
+    {
+      "quoteId": 1,
+      "id": 38
+    },
+    {
+      "quoteId": 2,
+      "id": 39
+    },
+    {
+      "quoteId": 2,
+      "id": 40
+    },
+    {
+      "quoteId": 3,
+      "id": 41
+    },
+    {
+      "quoteId": 3,
+      "id": 42
     }
   ]
 }
