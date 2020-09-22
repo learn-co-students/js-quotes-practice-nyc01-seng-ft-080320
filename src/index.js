@@ -134,7 +134,6 @@ document.addEventListener("DOMContentLoaded", () =>{
         .then(response => response.json())
         .then(like => {
             const quoteUl = document.querySelector("#quote-list")
-            console.log(like)
             quoteUl.innerHTML = ''
             getQuotesAndRenderToDom()
         })
