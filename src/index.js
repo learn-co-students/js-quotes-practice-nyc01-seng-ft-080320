@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () =>{
         })
     }
 
-    const compare = (a, b) => {
+    const compareAuthors = (a, b) => {
         if (a.author < b.author){
             return -1
         }
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () =>{
     }
 
     const renderSortedQuotes = quotes => {
-        quotes = quotes.sort(compare)
+        quotes = quotes.sort(compareAuthors)
         const quoteUl = document.querySelector("#quote-list")
         for(const quote of quotes){
             renderQuote(quote, quoteUl)
@@ -133,9 +133,24 @@ document.addEventListener("DOMContentLoaded", () =>{
         fetch('http://localhost:3000/likes/', options)
         .then(response => response.json())
         .then(like => {
-            const quoteUl = document.querySelector("#quote-list")
-            quoteUl.innerHTML = ''
-            getQuotesAndRenderToDom()
+            numberOfLikes(like, el)
+        })
+        
+    }
+
+    const numberOfLikes = (likeEl, el) => {
+        const likesArr = []
+
+        fetch('http://localhost:3000/likes')
+        .then(response => response.json())
+        .then(likes => {
+            for(const like of likes){
+                if(like.quoteId === likeEl.quoteId){
+                    likesArr.push(like)
+                }
+            }
+        const likedNum = likesArr.length
+        el.innerText = `Likes: ${likedNum}`
         })
     }
 

@@ -39,26 +39,6 @@
       "id": 11,
       "quote": "The here and now is all we have, and if we play it right it's all we'll need.",
       "author": "Ann Richards"
-    },
-    {
-      "quote": "blah",
-      "author": "blah",
-      "id": 12
-    },
-    {
-      "quote": "ooh la la",
-      "author": "lala",
-      "id": 13
-    },
-    {
-      "quote": "asdf",
-      "author": "adsf",
-      "id": 14
-    },
-    {
-      "quote": "happy",
-      "author": "adsf",
-      "id": 15
     }
   ],
   "likes": [
@@ -136,6 +116,311 @@
       "quoteId": 4,
       "createdAt": 1600812891489,
       "id": 24
+    },
+    {
+      "quoteId": 4,
+      "createdAt": 1600864703414,
+      "id": 25
+    },
+    {
+      "quoteId": 4,
+      "createdAt": 1600864764746,
+      "id": 26
+    },
+    {
+      "quoteId": 4,
+      "createdAt": 1600865061958,
+      "id": 27
+    },
+    {
+      "quoteId": 4,
+      "createdAt": 1600865077866,
+      "id": 28
+    },
+    {
+      "quoteId": 4,
+      "createdAt": 1600865134213,
+      "id": 29
+    },
+    {
+      "quoteId": 4,
+      "createdAt": 1600865135389,
+      "id": 30
+    },
+    {
+      "quoteId": 4,
+      "createdAt": 1600865152095,
+      "id": 31
+    },
+    {
+      "quoteId": 4,
+      "createdAt": 1600865173972,
+      "id": 32
+    },
+    {
+      "quoteId": 4,
+      "createdAt": 1600865185276,
+      "id": 33
+    },
+    {
+      "quoteId": 4,
+      "createdAt": 1600865197554,
+      "id": 34
+    },
+    {
+      "quoteId": 4,
+      "createdAt": 1600865204775,
+      "id": 35
+    },
+    {
+      "quoteId": 6,
+      "createdAt": 1600865229314,
+      "id": 36
+    },
+    {
+      "quoteId": 6,
+      "createdAt": 1600865235803,
+      "id": 37
+    },
+    {
+      "quoteId": 5,
+      "createdAt": 1600865269341,
+      "id": 38
+    },
+    {
+      "quoteId": 5,
+      "createdAt": 1600865336065,
+      "id": 39
+    },
+    {
+      "quoteId": 5,
+      "createdAt": 1600865346305,
+      "id": 40
+    },
+    {
+      "quoteId": 5,
+      "createdAt": 1600865392121,
+      "id": 41
+    },
+    {
+      "quoteId": 5,
+      "createdAt": 1600865400963,
+      "id": 42
+    },
+    {
+      "quoteId": 6,
+      "createdAt": 1600865453661,
+      "id": 43
+    },
+    {
+      "quoteId": 6,
+      "createdAt": 1600865463871,
+      "id": 44
+    },
+    {
+      "quoteId": 6,
+      "createdAt": 1600865479399,
+      "id": 45
+    },
+    {
+      "quoteId": 6,
+      "createdAt": 1600865491299,
+      "id": 46
+    },
+    {
+      "quoteId": 6,
+      "createdAt": 1600865521390,
+      "id": 47
+    },
+    {
+      "quoteId": 6,
+      "createdAt": 1600865527493,
+      "id": 48
+    },
+    {
+      "quoteId": 7,
+      "createdAt": 1600865553392,
+      "id": 49
+    },
+    {
+      "quoteId": 7,
+      "createdAt": 1600865554329,
+      "id": 50
+    },
+    {
+      "quoteId": 7,
+      "createdAt": 1600865567374,
+      "id": 51
+    },
+    {
+      "quoteId": 7,
+      "createdAt": 1600865583729,
+      "id": 52
+    },
+    {
+      "quoteId": 6,
+      "createdAt": 1600865657076,
+      "id": 53
+    },
+    {
+      "quoteId": 6,
+      "createdAt": 1600865659904,
+      "id": 54
+    },
+    {
+      "quoteId": 6,
+      "createdAt": 1600865660560,
+      "id": 55
+    },
+    {
+      "quoteId": 6,
+      "createdAt": 1600865719343,
+      "id": 56
+    },
+    {
+      "quoteId": 6,
+      "createdAt": 1600865745682,
+      "id": 57
+    },
+    {
+      "quoteId": 6,
+      "createdAt": 1600865773501,
+      "id": 58
+    },
+    {
+      "quoteId": 6,
+      "createdAt": 1600865790492,
+      "id": 59
+    },
+    {
+      "quoteId": 8,
+      "createdAt": 1600865806648,
+      "id": 60
+    },
+    {
+      "quoteId": 8,
+      "createdAt": 1600865807539,
+      "id": 61
+    },
+    {
+      "quoteId": 8,
+      "createdAt": 1600865808131,
+      "id": 62
+    },
+    {
+      "quoteId": 9,
+      "createdAt": 1600865856318,
+      "id": 63
+    },
+    {
+      "quoteId": 9,
+      "createdAt": 1600865857661,
+      "id": 64
+    },
+    {
+      "quoteId": 9,
+      "createdAt": 1600865867153,
+      "id": 65
+    },
+    {
+      "quoteId": 7,
+      "createdAt": 1600866091856,
+      "id": 66
+    },
+    {
+      "quoteId": 7,
+      "createdAt": 1600866093869,
+      "id": 67
+    },
+    {
+      "quoteId": 7,
+      "createdAt": 1600866094517,
+      "id": 68
+    },
+    {
+      "quoteId": 7,
+      "createdAt": 1600866095166,
+      "id": 69
+    },
+    {
+      "quoteId": 7,
+      "createdAt": 1600866095797,
+      "id": 70
+    },
+    {
+      "quoteId": 7,
+      "createdAt": 1600866096367,
+      "id": 71
+    },
+    {
+      "quoteId": 6,
+      "createdAt": 1600866123658,
+      "id": 72
+    },
+    {
+      "quoteId": 6,
+      "createdAt": 1600866137705,
+      "id": 73
+    },
+    {
+      "quoteId": 6,
+      "createdAt": 1600866138161,
+      "id": 74
+    },
+    {
+      "quoteId": 6,
+      "createdAt": 1600866138329,
+      "id": 75
+    },
+    {
+      "quoteId": 6,
+      "createdAt": 1600866138473,
+      "id": 76
+    },
+    {
+      "quoteId": 6,
+      "createdAt": 1600866138616,
+      "id": 77
+    },
+    {
+      "quoteId": 6,
+      "createdAt": 1600866138753,
+      "id": 78
+    },
+    {
+      "quoteId": 10,
+      "createdAt": 1600866148623,
+      "id": 79
+    },
+    {
+      "quoteId": 10,
+      "createdAt": 1600866148767,
+      "id": 80
+    },
+    {
+      "quoteId": 10,
+      "createdAt": 1600866148919,
+      "id": 81
+    },
+    {
+      "quoteId": 11,
+      "createdAt": 1600866483036,
+      "id": 90
+    },
+    {
+      "quoteId": 11,
+      "createdAt": 1600866483204,
+      "id": 91
+    },
+    {
+      "quoteId": 11,
+      "createdAt": 1600866483396,
+      "id": 92
+    },
+    {
+      "quoteId": 11,
+      "createdAt": 1600866483571,
+      "id": 93
     }
   ]
 }
