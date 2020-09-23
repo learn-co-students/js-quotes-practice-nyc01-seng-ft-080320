@@ -2,11 +2,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const GET_QUOTES_URL = "http://localhost:3000/quotes?_embed=likes"
     const QUOTES = "http://localhost:3000/quotes"
+    let sorted = false
 
     const getQuotes = () => {
         fetch(GET_QUOTES_URL)
         .then(response => response.json())
-        .then(quotes => renderQuotes(quotes))
+        .then(quotes => {
+            if (!sorted) {
+                renderQuotes(quotes)
+            } else {
+                const sortedQuotes = sort(quotes)
+                renderQuotes(sortedQuotes)
+            }
+        })
     }
 
     const renderQuotes = quotes => {
@@ -91,15 +99,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const clickHandler = () => {
         document.addEventListener("click", (e) => {
-            const quoteId = e.target.closest("li").dataset.quote_id
+
             if (e.target.matches(".btn-success")) {
+                const quoteId = e.target.closest("li").dataset.quote_id
                 likeQuote(quoteId)
             } else if (e.target.matches(".btn-danger")) {
+                const quoteId = e.target.closest("li").dataset.quote_id
                 deleteQuote(quoteId)
             } else if (e.target.matches(".btn-secondary")) {
+                const quoteId = e.target.closest("li").dataset.quote_id
                 if (!e.target.closest("li").querySelector("#edit-quote-form")) {
                     buildForm(quoteId)
                 }
+            } else if (e.target.matches("#sort-btn")) {
+                toggleSortButton();
+                sorted = !sorted
+                getQuotes();
             }
         })
     }
@@ -166,6 +181,43 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(getQuotes())
     }
 
+    const toggleSortButton = () => {
+        const button = document.querySelector("#sort-btn")
+        sorted ? (button.textContent = "Sort ON") : (button.textContent = "Sort OFF")
+    }
+
+    const sort = quotes => {
+        const sortedQuotes = quotes.sort(compareName)
+        return sortedQuotes
+    }
+
+    const compareName = (a, b) => {
+        const authorA = a.author.toUpperCase();
+        const authorB = b.author.toUpperCase();
+
+        let comp = 0
+        if (authorA > authorB) {
+            comp = 1
+        } else if (authorA < authorB) {
+            comp = -1
+        }
+        return comp
+    }
+
+    const addSortButton = () => {
+        const hr = document.querySelector("hr")
+        const sortDiv = document.createElement("div")
+        sortDiv.id = "sort-div"
+        const sortButton = document.createElement("button")
+        sortButton.className = "btn btn-primary"
+        sortButton.id = "sort-btn"
+        sortButton.textContent = "Sort OFF"
+        sortDiv.append(sortButton)
+
+        hr.insertAdjacentElement('beforebegin', sortDiv)
+    }
+
+    addSortButton();
     clickHandler();
     submitHandler();
     getQuotes();
